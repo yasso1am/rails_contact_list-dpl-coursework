@@ -1,2 +1,30 @@
-<h1>Contacts#index</h1>
-<p>Find me in app/views/contacts/index.html.erb</p>
+<h1> All of your Contacts </h1>
+<h4> Click on a name to see the contact in detail </h4>
+<h5> <%= link_to 'Create New', new_contact_path %> </h5>
+
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Age</td>
+      <td>Phone</td>
+      <td>Email</td>
+      <td>Friend?</td>
+      <td>Edit</td>
+      <td>Delete</td>
+    </tr>
+  </thead>
+  <tbody>
+<% @contacts.each do |contact| %>
+  <tr>
+    <td> <%= link_to "#{contact.name}", contact_path(contact) %> </td>
+    <td> <%= contact.age %> </td>
+    <td> <%= contact.phone %> </td>
+    <td> <%= contact.email %> </td>
+    <td> <%= contact.friend %> </td>
+    <td> <%= link_to 'Edit', edit_contact_path(contact) %> </td>
+    <td> <%= link_to 'Delete', contact, method: :delete %> </td>
+  </tr>
+<% end %>
+  </tbody>
+  </table>
